@@ -1,0 +1,28 @@
+services:
+  api:
+    build: ./backend
+    env_file: .env
+    environment:
+      BIFROST_URL: http://bifrost:8080
+    ports: ["8000:8000"]
+    depends_on: [bifrost]
+  web:
+    build: ./frontend
+    environment:
+      API_URL: http://api:8000
+    ports: ["5173:5173"]
+    depends_on: [api]
+  bifrost:
+    image: maximhq/bifrost:v1.5.0
+    ports: ["8080:8080"]
+    environment:
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      BIFROST_API_KEY: ${BIFROST_API_KEY:-sk-bf-freshcheck-local}
+      BIFROST_ENCRYPTION_KEY: ${BIFROST_ENCRYPTION_KEY:-change-me-change-me-change-me-1234}
+    volumes:
+      - ./infra/bifrost:/app/data
+      - bifrost-data:/app/data/db
+    command: ["--app-dir", "/app/data"]
+volumes:
+  bifrost-data:
