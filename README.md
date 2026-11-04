@@ -23,6 +23,10 @@ flowchart LR
 
 The UI starts without keys, but live fact checking requires Tavily and Groq credentials. Bifrost's console is at http://localhost:8080. `GET /health` reports service availability and whether keys are configured.
 
+### Preview the UI without installing packages
+
+Open `http://localhost:5173/preview.html` after running `python -m http.server 5173 --directory frontend`. This standalone UI preview has sample-only interactions; its “Run preview” action does not verify facts or call the API. The production React app runs at `/` when Docker and npm dependencies are available.
+
 ## Configuration
 
 | Variable | Purpose |
