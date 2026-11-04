@@ -8,6 +8,6 @@ test:
 eval:
 	python eval/run_eval.py
 demo:
-	python scripts/seed_demo.py
+	python scripts/check_seed_graph.py
 lint:
 	cd backend && ruff check app

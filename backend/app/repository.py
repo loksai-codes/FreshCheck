@@ -1,5 +1,6 @@
 import asyncio
 import json
+from urllib.parse import unquote, urlparse
 
 from redis.exceptions import RedisError
 
@@ -16,8 +17,17 @@ class GraphRepository:
             from falkordb import FalkorDB
 
             url = env("FALKORDB_URL")
-            if url and "localhost" not in url:
-                self.db = FalkorDB(url=url, socket_timeout=3, socket_connect_timeout=3)
+            if url:
+                parsed = urlparse(url)
+                self.db = FalkorDB(
+                    host=parsed.hostname or "localhost",
+                    port=parsed.port or 6379,
+                    username=unquote(parsed.username) if parsed.username else None,
+                    password=unquote(parsed.password) if parsed.password else None,
+                    ssl=parsed.scheme == "rediss",
+                    socket_timeout=3,
+                    socket_connect_timeout=3,
+                )
             else:
                 self.db = FalkorDB(
                     host=env("FALKORDB_HOST") or "localhost",

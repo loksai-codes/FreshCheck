@@ -1,12 +1,16 @@
 import os
 
-from dotenv import load_dotenv
+from dotenv import dotenv_values, load_dotenv
 
 load_dotenv()
+_local_env = dotenv_values()
 
 
 def env(name: str, default: str = "") -> str:
-    return os.getenv(name, default).strip()
+    value = os.getenv(name, "").strip()
+    if value:
+        return value
+    return str(_local_env.get(name) or default).strip()
 
 
 BIFROST_URL = env("BIFROST_URL", "http://localhost:8080").rstrip("/")
