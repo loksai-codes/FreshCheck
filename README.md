@@ -1,6 +1,20 @@
-# FreshCheck
+<p align="center">
+  <img src="assets/freshcheck-banner.svg" alt="FreshCheck — freshness intelligence for AI answers" width="100%" />
+</p>
 
-FreshCheck finds time-sensitive statements in generated answers, checks them against live web evidence, and records verification history. The app is configured to use **your hosted FalkorDB** instance; it does not start a local graph database. Groq model calls are routed through Bifrost.
+<p align="center">
+  <a href="https://www.python.org/"><img alt="Python 3.11" src="https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white"></a>
+  <a href="https://fastapi.tiangolo.com/"><img alt="FastAPI" src="https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white"></a>
+  <a href="https://react.dev/"><img alt="React" src="https://img.shields.io/badge/UI-React-149ECA?logo=react&logoColor=white"></a>
+  <a href="https://www.typescriptlang.org/"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white"></a>
+  <a href="https://groq.com/"><img alt="Groq" src="https://img.shields.io/badge/LLM-Groq-F55036?logo=groq&logoColor=white"></a>
+  <a href="https://www.falkordb.com/"><img alt="FalkorDB" src="https://img.shields.io/badge/Graph-FalkorDB-6D4AFF"></a>
+  <a href="https://www.docker.com/"><img alt="Docker Compose" src="https://img.shields.io/badge/Run-Docker%20Compose-2496ED?logo=docker&logoColor=white"></a>
+</p>
+
+<p align="center"><strong>Catch facts that have gone stale.</strong><br>Check time-sensitive claims against live sources and trace how their values change over time.</p>
+
+FreshCheck checks generated answers against live web evidence and records claim history in **your hosted FalkorDB** instance. Groq model calls go through Bifrost.
 
 ## Architecture
 
